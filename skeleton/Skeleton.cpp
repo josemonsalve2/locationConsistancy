@@ -20,8 +20,12 @@ namespace {
         errs()<< "Basic Block = "<< i->getName() << "\n";
 	for (BasicBlock::iterator j = i->begin(); j != i->end(); ++j)
         {
-	   if (dyn_cast<LoadInst>(j) || dyn_cast<StoreInst>(j)) {
-           	errs()<< *j << "\n";
+	   if (auto *op = dyn_cast<LoadInst>(j) )
+	   {
+           	errs()<< *j << " ==//== "<<op->getOperand(0)->getName()<< "\n";
+	   }
+	   if (auto *op = dyn_cast<StoreInst>(j)) {
+           	errs()<< *j << " ==//== "<<op->getOperand(1)->getName() << "\n";
 	   }
 
         }
