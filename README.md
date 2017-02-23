@@ -12,6 +12,9 @@ cd build
 LLVM_DIR=/usr/local/lib64/cmake/llvm/ cmake ..
 make
 cd ..
-clang -Xclang -load -Xclang build/skeleton/libSkeletonPass.so example.c
+cc -c rtlib.c
+clang -Xclang -load -Xclang build/skeleton/libSkeletonPass.so -c example.c
+cc example.o rtlib.o
+./a.out
 ```
 
